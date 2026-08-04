@@ -41,8 +41,8 @@ for (taxi_id, trip_type), (total_trip, total_fare, total_distance) in taxi_dict.
     print(f"{taxi_id}\t{trip_type}\t{total_trip}\t{total_fare}\t{total_distance}")
 
 
-# for combination of taxiID
+'''# for combination of taxiID
 for taxi_id, trip_type in trip_type_dict.items():
     if len(trip_type) != 3:
-        print(f"{taxi_id}\t{trip_type}\t0\t0.0\t0.0")
+        print(f"{taxi_id}\t{trip_type}\t0\t0.0\t0.0")'''
 
