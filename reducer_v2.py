@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 import sys
 
-from collections import defaultdict
-
-#  initialise empty list of trip_count, max_fare, min_fare, total_fare
-taxi_dict = defaultdict(lambda: [0, None, None, 0.0])
+#  initialise empty dict
+taxi_dict = {}
 
 for line in sys.stdin:
     line = line.strip()
@@ -17,14 +15,16 @@ for line in sys.stdin:
     min_fare = float(fields[4])
     total_fare = float(fields[5])
 
+    if (taxi_id, trip_type) not in taxi_dict:
+        taxi_dict[(taxi_id, trip_type)] = [0, None, None, 0.0]
     taxi_dict[(taxi_id, trip_type)][0] += trip_count
 
     if taxi_dict[(taxi_id, trip_type)][1] is None or max_fare > taxi_dict[(taxi_id, trip_type)][1]:
-    # all trip max
+        # all trip max
         taxi_dict[(taxi_id, trip_type)][1] = max_fare
 
     if taxi_dict[(taxi_id, trip_type)][2] is None or min_fare < taxi_dict[(taxi_id, trip_type)][2]:
-    # all trip min
+        # all trip min
         taxi_dict[(taxi_id, trip_type)][2] = min_fare
     
     taxi_dict[(taxi_id, trip_type)][3] += total_fare

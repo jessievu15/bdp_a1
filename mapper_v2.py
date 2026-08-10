@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 import sys
-from collections import defaultdict
 
-#  initialise empty list of trip_count, max_fare, min_fare, total_fare
-taxi_dict = defaultdict(lambda: [0, None, None, 0.0])
+#  initialise empty dict
+taxi_dict = {}
 
 for line in sys.stdin:
     line = line.strip() # remove leading/trailing whitespace
@@ -21,6 +20,8 @@ for line in sys.stdin:
     else:
         trip_type = "long"
 
+    if (taxi_id, trip_type) not in taxi_dict:
+        taxi_dict[(taxi_id, trip_type)] = [0, None, None, 0.0]
     taxi_dict[(taxi_id, trip_type)][0] += 1 # update trip count
 
     if taxi_dict[(taxi_id, trip_type)][1] is None or fare > taxi_dict[(taxi_id, trip_type)][1]:
