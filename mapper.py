@@ -13,8 +13,6 @@
 
 import sys
 
-from mapper import taxi_id
-
 # using a dictionary to map taxi id and trip type to count, max, min and sum.
 current_taxi_id = None
 current_trip_type = None
