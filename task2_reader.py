@@ -1,6 +1,6 @@
 from task2_mapper import getCentroids
 
-#check if distance of centroids and centroids1 is less than 1
+
 def checkCentroidsDistance(centroids, centroids1):
 
     if len(centroids) != len(centroids1): # mismtach number of centroids
@@ -8,10 +8,8 @@ def checkCentroidsDistance(centroids, centroids1):
         return
 
     for i in range(len(centroids)):
-        x_dist = abs(centroids[i][0] - centroids1[i][0])
-        y_dist = abs(centroids[i][1] - centroids1[i][1])
-
-        if x_dist >= 1 or y_dist >= 1:
+        if centroids[i][0] != centroids1[i][0] or centroids[i][1] != centroids1[i][1]:
+            # if not exact match
             print(0)
             return
 
