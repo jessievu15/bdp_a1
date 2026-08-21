@@ -23,8 +23,8 @@ for line in sys.stdin:
     else:
         # Input 2: Trips.txt (only need taxi id, fare and distance)
         taxi_id = fields[1]
-        fare = float(fields[2])
-        distance = float(fields[3])
+        fare = fields[2]
+        distance = fields[3]
         # Tag data from Trips.txt as B
         print(f"{taxi_id}\tB\t{fare}\t{distance}")
 
