@@ -8,15 +8,8 @@ hadoop fs -put ./Trips.txt /Input/Trips.txt
 
 hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \
 -D mapreduce.job.reduces=3 \
--files ./mapper.py,./reducer.py \
--mapper ./mapper.py \
--reducer ./reducer.py \
+-files ./mapper_v2.py,./reducer_v2.py \
+-mapper ./mapper_v2.py \
+-reducer ./reducer_v2.py \
 -input /Input/Trips.txt \
 -output /Output/task1
-
-
-
-
-
-
-

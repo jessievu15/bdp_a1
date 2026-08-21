@@ -24,5 +24,6 @@ for (taxi_id, trip_type), (total_trip, fare_list, total_fare) in taxi_dict.items
     min_fare = min(fare_list) if fare_list else 0.0
     average_fare = total_fare/total_trip if total_trip > 0 else 0.0
     print(f"{taxi_id}\t{trip_type}\t{total_trip}\t{max_fare:.2f}\t{min_fare:.2f}\t{average_fare:.2f}")
-    
+
+# python mapper.py < Trips.txt | sort | python reducer.py
 

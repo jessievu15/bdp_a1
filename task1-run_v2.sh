@@ -10,7 +10,7 @@ hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \
 -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator \
 -D stream.num.map.output.key.fields=2 \
 -D mapred.text.key.partitioner.options=-k1,1 \
--D mapred.text.key.comparator.options='-k1,1n -k2,2' \
+-D mapred.text.key.comparator.options='-k1,1 -k2,2' \
 -D mapreduce.job.reduces=3 \
 -files ./mapper_v2.py,./reducer_v2.py \
 -mapper ./mapper_v2.py \
