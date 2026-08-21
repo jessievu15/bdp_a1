@@ -15,7 +15,7 @@ do
 
     hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \
     -D mapreduce.job.reduces=3 \
-    -D mapred.text.key.partitioner.options=-k1 \
+    -D mapred.text.key.partitioner.options=-k1,1 \
     -files ./centroids.txt,./task2_mapper.py,./task2_reducer.py \
     -mapper ./task2_mapper.py \
     -reducer ./task2_reducer.py \
