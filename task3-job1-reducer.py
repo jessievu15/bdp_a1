@@ -28,12 +28,3 @@ for line in sys.stdin:
 
         if company is not None:
             print(f"{taxi_id}\t{company}\t{fare}\t{distance}")
-
-
-
-
-
-
-
-
-
