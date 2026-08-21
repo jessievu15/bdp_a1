@@ -9,7 +9,15 @@ for line in sys.stdin:
     if not line:
         continue
 
-    taxi_id, tag, data = line.split('\t')
+    # split data by tabs
+    fields = line.split('\t')
+
+    if len(fields) < 3:
+        continue
+
+    taxi_id = fields[0]
+    tag = fields[1]
+    data_fields = fields[2:]
 
     # Reset current taxi when reading new taxi id
     if taxi_id != current_taxi_id:
@@ -18,13 +26,16 @@ for line in sys.stdin:
 
     # check if tag for the line is "A" - means its from Taxis.txt
     if tag == "A":
-        fields = data.split('\t')
-        company = fields[0]
+        if len(data_fields) >= 1:
+            company = data_fields[0]
 
     elif tag == "B":
-        fields = data.split('\t')
-        fare = float(fields[0])
-        distance = float(fields[1])
+        if len(data_fields) >= 2:
+            try:
+                fare = float(data_fields[0])
+                distance = float(data_fields[1])
 
-        if company is not None:
-            print(f"{taxi_id}\t{company}\t{fare}\t{distance}")
+                if company is not None:
+                    print(f"{taxi_id}\t{company}\t{fare}\t{distance}")
+            except ValueError:
+                continue
