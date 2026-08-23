@@ -22,16 +22,12 @@ for line in sys.stdin:
 
     # check if tag for the line is "A" - means its from Taxis.txt
     if tag == "A":
-        # if len(data_fields) >= 1:
         company = data_fields[0]
 
     elif tag == "B":
-        # if len(data_fields) >= 2:
-        try:
-            fare = float(data_fields[0])
-            distance = float(data_fields[1])
+        fare = float(data_fields[0])
+        distance = float(data_fields[1])
+        print(f"{taxi_id}\t{company}\t{fare}\t{distance}")
 
-            if company is not None:
-                print(f"{taxi_id}\t{company}\t{fare}\t{distance}")
-        except ValueError:
-            continue
+
+
