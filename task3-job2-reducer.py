@@ -4,7 +4,7 @@ import sys
 #  initialise empty dict
 #  company_totals to contain
 #  [total revenue, total trips, fleet size, total distance]
-company_totals = []
+company_totals = [0.0, 0, 0, 0.0]
 current_company = None
 
 # use a set to keep track of unique taxi ids for a company
@@ -26,13 +26,13 @@ for line in sys.stdin:
     # capture the company_data for each new company read in.
     # shuffle and sort will be set up to sort records with same company to same reducer.
     if current_company is not None and current_company != company:
-        total_rev, total_trips, fleet_size, total_distance = company_totals
+        total_rev, total_trips, fleet_size, total_dist = company_totals
 
         # calculate averages
         rev_per_taxi = total_rev / fleet_size
         avg_trip_dist = total_distance / total_trips
 
-        print(f"{current_company}\t{total_rev:.2f}\t{fleet_size}\t{total_distance:.2f}\t{rev_per_taxi:.2f}\t{avg_trip_dist:.2f}")
+        print(f"{current_company}\t{total_rev:.2f}\t{fleet_size}\t{total_dist:.2f}\t{rev_per_taxi:.2f}\t{avg_trip_dist:.2f}")
 
         # reset the list to prepare for next company.
         company_totals = [0.0, 0, 0, 0.0]
@@ -55,5 +55,5 @@ if current_company:
     rev_per_taxi = total_rev / fleet_size
     avg_trip_dist = total_dist / total_trips
 
-    print(f"{current_company}\t{total_rev:.2f}\t{total_trips}\t{fleet_size}\t{total_dist:.2f}\t{rev_per_taxi:.2f}\t{avg_trip_dist:.2f}")
+    print(f"{current_company}\t{total_rev:.2f}\t{fleet_size}\t{total_dist:.2f}\t{rev_per_taxi:.2f}\t{avg_trip_dist:.2f}")
 
