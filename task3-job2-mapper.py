@@ -30,5 +30,5 @@ for line in sys.stdin:
 
 # emit key value pairs
 for (company, taxi_id), (trips, total_fare, total_distance) in taxi_dict.items():
-    print(f"({company}\t{taxi_id}\t{trips}\t{total_fare}\t{total_distance}")
+    print(f"{company}\t{taxi_id}\t{trips}\t{total_fare}\t{total_distance}")
 
