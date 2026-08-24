@@ -37,12 +37,15 @@ cat job2_check.txt
 
 # Job 3: Sorting
 hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \
--D mapred.text.key.partitioner.options=-k1,1 \
--D mapred.text.key.comparator.options='-k1,1 -k2,2' \
+    -D stream.num.map.output.key.fields=2 \
+    -D mapreduce.partition.keypartitioner.options=-k1,1 \
+    -D mapreduce.job.output.key.comparator.class=org.apache.hadoop.mapreduce.lib.partition.KeyFieldBasedComparator \
+    -D mapreduce.partition.keycomparator.options='-k1,1n -k2,2nr' \
     -D mapreduce.job.reduces=3 \
     -files ./task3-job3-mapper.py,./task3-job3-reducer.py \
     -mapper ./task3-job3-mapper.py \
     -reducer ./task3-job3-reducer.py \
+    -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner \
     -input /Output/task3-job2 \
     -output /Output/task3
 
