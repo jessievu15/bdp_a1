@@ -23,10 +23,6 @@ hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \
 -output /Output/task3 \
 -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner
 
-hadoop fs -getmerge /Output/task3/p* job1_output.txt
-hadoop fs -put ./job1_output.txt /Input/job1_output.txt
-hadoop fs -rm -r /Output/task3
-
 hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \
 -D stream.num.map.output.key.fields=1 \
 -D mapred.text.key.partitioner.options=-k1,1 \
@@ -36,6 +32,6 @@ hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \
 -files ./task3-job2-mapper.py,./task3-job2-reducer.py \
 -mapper ./task3-job2-mapper.py \
 -reducer ./task3-job2-reducer.py \
--input /Input/job1_output.txt \
--output /Output/task3 \
+-input /Output/task3 \
+-output /Output/task3/job2 \
 -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner
