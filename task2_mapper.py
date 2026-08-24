@@ -30,7 +30,6 @@ def createClusters(centroids):
         fields = line.split(',')
         min_dist = 100000000000000
         index = -1
-        closest_centroid = None
 
         for i, centroid in enumerate(centroids):
             try:
@@ -42,12 +41,10 @@ def createClusters(centroids):
 
             cur_dist = sqrt(pow(x_cord - centroid[0], 2) + pow(y_cord - centroid[1], 2))
 
-            if cur_dist < min_dist:
+            if cur_dist <= min_dist:
                 min_dist = cur_dist
-                # closest_centroid = centroid
                 index = i
 
-        # print("%s\t%s\t%s\t%s\t%s" % (closest_centroid[0], closest_centroid[1], x_cord, y_cord))
         print("%s\t%s\t%s" % (index, x_cord, y_cord))     
 if __name__ == "__main__":
     centroids = getCentroids('centroids.txt')

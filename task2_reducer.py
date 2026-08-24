@@ -34,24 +34,19 @@ def calculateNewCentroids():
     for line in sys.stdin:
         line = line.strip()
 
-        # centroid_x, centroid_y, x, y = line.split('\t')
         index, x, y = line.split('\t')
 
         try:
-            #centroid_x = float(centroid_x)
-            #centroid_y = float(centroid_y)
             x = float(x)
             y = float(y)
         except ValueError:
             continue
 
-        #if current_cluster == (centroid_x, centroid_y):
         if current_cluster == index:
             points.append((x, y))
         else:
             if current_cluster is not None:
                 processCluster(current_cluster, points)
-            #current_cluster = (centroid_x, centroid_y)
             current_cluster = index
             points = [(x, y)]
 
