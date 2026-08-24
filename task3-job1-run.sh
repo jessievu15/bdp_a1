@@ -22,3 +22,20 @@ hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \
 -input /Input/Trips.txt \
 -output /Output/task3 \
 -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner
+
+hadoop fs -getmerge /Output/task3/p* job1_output.txt
+hadoop fs -put ./job1_output.txt /Input/job1_output.txt
+hadoop fs -rm -r /Output/task3
+
+hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \
+-D stream.num.map.output.key.fields=1 \
+-D mapred.text.key.partitioner.options=-k1,1 \
+-D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator \
+-D mapred.text.key.comparator.options='-k1,1 -k2,2' \
+-D mapreduce.job.reduces=3 \
+-files ./task3-job2-mapper.py,./task3-job2-reducer.py \
+-mapper ./task3-job2-mapper.py \
+-reducer ./task3-job2-reducer.py \
+-input /Input/job1_output.txt \
+-output /Output/task3 \
+-partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner
