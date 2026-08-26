@@ -12,4 +12,4 @@ for line in sys.stdin:
     rev_per_taxi = float(fields[5])
     avg_trip_dist = float(fields[6])
 
-    print(f"{fields[0]}\t{company_id}\t{total_revenue:.2f}\t{total_trips}\t{fleet_size}\t{rev_per_taxi:.2f}\t{avg_trip_dist:.2f}")
+    print(f"{company_id}\t{total_revenue:.2f}\t{total_trips}\t{fleet_size}\t{rev_per_taxi:.2f}\t{avg_trip_dist:.2f}")
