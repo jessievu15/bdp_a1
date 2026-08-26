@@ -21,7 +21,7 @@ do
     rm -f task2_output.txt
     hadoop fs -getmerge /Output/task2/part* task2_output.txt
 
-    echo "Iterration $i"
+    echo "Iteration $i"
     cat task2_output.txt
 
     # save new centroids separately
