@@ -27,17 +27,20 @@ hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \
 -input /Output/task3_job1 \
 -output /Output/task3_job2
 
+hadoop fs -rm -r /Input/task3_job2_output.txt
+hadoop fs -getmerge /Output/task3_job2/part* task3_job2_output.txt
+hadoop fs -put task3_job2_output.txt /Input/task3_job2_output.txt
 
 hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \
--D mapreduce.job.reduces=1 \
+-D mapreduce.job.maps=1 \
 -D mapreduce.job.reduces=3 \
 -D stream.num.map.output.key.fields=3 \
 -D mapred.text.key.partitioner.options=-k1,1 \
 -D mapred.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator \
--D mapred.text.key.comparator.options='-k3,3nr' \
+-D mapred.text.key.comparator.options='-k1,1n -k3,3nr' \
 -files ./task3_job3_mapper.py,./task3_job3_reducer.py \
 -mapper ./task3_job3_mapper.py \
 -reducer ./task3_job3_reducer.py \
--input /Output/task3_job2 \
+-input /Input/task3_job2_output.txt \
 -output /Output/task3 \
 -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner

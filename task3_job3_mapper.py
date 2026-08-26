@@ -4,11 +4,11 @@ import sys
 company_dict = {}
 total_revenue_list = []
 
-def revenue_level(total_revenue):
+def revenue_level(total_revenue, cutoff_low, cutoff_high):
     # separate the each company total revenue by level: high (0), medium (1), low (2)
-    if total_revenue >= cutoff_high:
+    if total_revenue > cutoff_high:
         return 0
-    elif total_revenue >= cutoff_low:
+    elif total_revenue > cutoff_low:
         return 1
     else:
         return 2
@@ -35,7 +35,7 @@ cutoff_high = max_rev - band
 cutoff_low = min_rev + band 
 
 for company_id, (total_revenue, total_trips, fleet_size, rev_per_taxi, avg_trip_dist) in company_dict.items():
-    level = revenue_level(total_revenue)
+    level = revenue_level(total_revenue, cutoff_low, cutoff_high)
     print(f"{level}\t{company_id}\t{total_revenue}\t{total_trips}\t{fleet_size}\t{rev_per_taxi}\t{avg_trip_dist}")
 
 
