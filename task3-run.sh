@@ -1,13 +1,9 @@
 #!/bin/bash
 
 # remove the input and output directories every time before running the job to avoid errors
-hadoop fs -rm -r /Input
 hadoop fs -rm -r /Output/task3_job1
 hadoop fs -rm -r /Output/task3_job2
 hadoop fs -rm -r /Output/task3
-hadoop fs -mkdir /Input
-hadoop fs -put ./Taxis.txt /Input/Taxis.txt
-hadoop fs -put ./Trips.txt /Input/Trips.txt
 
 hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \
 -D stream.num.map.output.key.fields=2 \
@@ -45,10 +41,3 @@ hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \
 -input /Output/task3_job2 \
 -output /Output/task3 \
 -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner
-
-# remove any intermediate output
-
-
-hadoop fs -ls /Output/task3
-hadoop fs -getmerge /Output/task3/part* task3_output.txt
-cat task3_output.txt

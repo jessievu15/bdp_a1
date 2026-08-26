@@ -5,7 +5,7 @@ company_dict = {}
 total_revenue_list = []
 
 def revenue_level(total_revenue):
-    
+    # separate the each company total revenue by level: high (0), medium (1), low (2)
     if total_revenue >= cutoff_high:
         return 0
     elif total_revenue >= cutoff_low:

@@ -3,11 +3,6 @@
 v=$(head -n 1 initialization.txt)
 cp initialization.txt centroids.txt
 
-# remove the input and output directories every time before running the job to avoid errors
-hadoop fs -rm -r /Input
-hadoop fs -mkdir /Input
-hadoop fs -put ./Trips.txt /Input/Trips.txt
-
 i=1
 while [ $i -le $v ]
 do
@@ -24,7 +19,6 @@ do
     -partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner
 
     rm -f task2_output.txt
-    hadoop fs -ls /Output/task2
     hadoop fs -getmerge /Output/task2/part* task2_output.txt
 
     echo "Iterration $i"
