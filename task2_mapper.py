@@ -39,6 +39,7 @@ def createClusters(centroids):
             except ValueError:
                 continue
 
+            # calculate using Euclidean distance
             cur_dist = sqrt(pow(x_cord - centroid[0], 2) + pow(y_cord - centroid[1], 2))
 
             if cur_dist <= min_dist:

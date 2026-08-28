@@ -44,5 +44,3 @@ if taxi_dict:
     for (t_id, t_type), (t_count, mx_fare, mn_fare, tot_fare) in taxi_dict.items():
         average_fare = tot_fare / t_count if t_count > 0 else 0.0
         print(f"{t_id}\t{t_type}\t{t_count}\t{mx_fare:.2f}\t{mn_fare:.2f}\t{average_fare:.2f}")
-
-# python mapper_v2.py < Trips.txt | sort | python reducer_v2.py

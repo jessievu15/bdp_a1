@@ -3,7 +3,7 @@ from task2_mapper import getCentroids
 
 def checkCentroidsDistance(centroids, centroids1):
 
-    if len(centroids) != len(centroids1): # mismtach number of centroids
+    if len(centroids) != len(centroids1): # mismatch number of centroids
         print(0)
         return
 
